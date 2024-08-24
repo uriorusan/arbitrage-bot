@@ -1,0 +1,31 @@
+{
+  "name": "hardhat-project",
+  "dependencies": {
+    "@aave/core-v3": "^1.19.3",
+    "@aave/periphery-v3": "^2.5.2",
+    "@bgd-labs/aave-address-book": "^3.1.1",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
+    "@uniswap/token-lists": "^1.0.0-beta.34",
+    "@uniswap/v2-periphery": "^1.1.0-beta.0",
+    "@uniswap/v3-core": "^1.0.1",
+    "@uniswap/v3-periphery": "^1.4.4",
+    "@uniswap/v3-sdk": "^3.13.1",
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.2",
+    "ethers-multicall": "^0.2.3",
+    "hardhat": "^2.19.4",
+    "hardhat-project": ".",
+    "scripts": "^0.1.0"
+  },
+  "scripts": {
+    "blockchain": "dotenv -f .env run -- bash -c 'bun hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/$ALCHEMY_API_KEY'",
+    "build": "bun hardhat typechain",
+    "terminal": "bun hardhat console --network localhost",
+    "main": "bun hardhat run --network localhost scripts/main.ts",
+    "start": "concurrently --kill-others --prefix-colors \"bgRed.bold,bgGreen.bold\" \"bun run blockchain\" \"sleep 10 && bun run main\""
+  }
+}
